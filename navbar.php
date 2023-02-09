@@ -1,4 +1,5 @@
-<?php session_start()  ?>
+
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -9,7 +10,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="../">ORT MARKET</a>
+      <a class="navbar-brand" href="/">ORT MARKET</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -19,16 +20,16 @@
             <a class="nav-link" href="#">Commandes</a>
           </li>
           <li class="nav-item active" >
-          <?php if(isset($_SESSION['EMAIL'])){ ?>  <a class="nav-link" href="logout.php"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+          <?php  if(isset($_SESSION['EMAIL'])){ ?>  <a class="nav-link" href="php/logout.php"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
   <path d="M7.5 1v7h1V1h-1z"/>
   <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
 </svg></a> <?php } else { ?>
-    <a class="nav-link" href="login.php"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+    <a class="nav-link" href="php/login.php"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
 </svg></a>
 <?php } ?>
-
+    
           </li>
           <li class="nav-item active" >
             <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
@@ -37,20 +38,14 @@
           </li>
           <?php if(isset($_SESSION['Role'])){ if($_SESSION['Role'] == 'root') { ?>
           <li class="nav-item active">
-            <a href="adminer.php" class="nav-link">Adminer</a>
+            <a href="php/adminer.php" class="nav-link">Adminer</a>
           </li>
-         
-          <li class="nav-item dropdown active">
-        <a class="nav-link dropdown-toggle" href="articles.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Articles
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="../php/articles.add.php">Ajouter</a>
-          <a class="dropdown-item" href="#">management</a>
-    
-        </div>
-      </li>
+          <li class="nav-item active">
+          <a href="php/articles.php" class="nav-link">Articles</a>
+
+          </li>
           <?php } } ?>
+         
         </ul>
       </div>
     </nav>

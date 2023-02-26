@@ -11,8 +11,4 @@ document.location.href="../?er=01"
 </SCRIPT>
 <?php
 }
-$id = $_GET['id'];
-
-$user = $_GET['user'];
-$art = $a->get_product_com($id,$user);
-include('../vue/com.detail.php');
+include('test.php');

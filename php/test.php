@@ -1,43 +1,69 @@
 <?php
-include('../php_obj/autoload.php');
-include('../vue/navbar.php');
+// Connexion à la base de données
+$pdo = new PDO('mysql:host=localhost;dbname=Shop_online', 'root', 'root');
 
-// Récupère l'adresse IP du client
-$client_ip = $_SERVER['REMOTE_ADDR'];
+// Requête SQL avec jointure pour récupérer les noms des articles
+$sql = "SELECT Articles.Title as nom_produit, SUM(ligne_commande.quantite) as total_achats FROM ligne_commande INNER JOIN Articles ON ligne_commande.id_produit = Articles.id GROUP BY ligne_commande.id_produit ORDER BY total_achats DESC";
 
-// Récupère la taille de l'écran à partir de l'en-tête HTTP "User-Agent"
-$user_agent = $_SERVER['HTTP_USER_AGENT'];
+// Exécution de la requête SQL
+$stmt = $pdo->query($sql);
 
-// Utilise une expression régulière pour extraire la largeur et la hauteur de l'écran
-if (preg_match('/\b(\d+)x(\d+)\b/', $user_agent, $matches)) {
-    // La correspondance a été trouvée, on peut utiliser $matches[1] et $matches[2]
-    $screen_width = $matches[1];
-    $screen_height = $matches[2];
-} else {
-    // Pas de correspondance, on utilise des valeurs par défaut
-    $screen_width = 800;
-    $screen_height = 600;
+// Récupération des résultats de la requête
+$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Préparation des données pour le graphique
+$labels = [];
+$values = [];
+foreach ($data as $row) {
+    $labels[] = $row['nom_produit'];
+    $values[] = $row['total_achats'];
 }
 
-
-// Récupère le nom du navigateur à partir de l'en-tête HTTP "User-Agent"
-
-// Affiche les informations
-echo "Adresse IP du client : $client_ip\n";echo "<br>";
-echo "Taille de l'écran : ";function resol()
-{
-
-$resol='<script type="text/javascript">
-                document.write(""+screen.width+"*"+screen.height+"");
-</script>';
-return $resol;
-}
-$var_resol=resol();
-echo $var_resol;echo "<br>";
-echo "Navigateur utilisé : ";$browser = get_browser(null, true);
-$browser_name = $browser['browser']; echo $browser_name;
-
-
-
+// Création du graphique avec la bibliothèque Chart.js
 ?>
+<html>
+<head>
+    <title>Graphique des ventes</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body >
+  
+<div style="position: absolute;
+  top: 30px;
+  left: 10px;
+  width: 50%;
+  height: 50%;
+  transform: scale(0.8);">
+    <h4 style="text-align:center;">Quantités par Articles</h4>
+    
 
+ 
+    <canvas id="myChart"></canvas>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($labels) ?>,
+                datasets: [{
+                    label: 'Nombre d\'articles vendus',
+                    data: <?= json_encode($values) ?>,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+       </div>
+</body>
+</html>

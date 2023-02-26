@@ -40,10 +40,22 @@ function createUserList(usersList) {
     const listItem = document.createElement("div");
     listItem.setAttribute("class", "col mb-5");
 
-    listItem.innerHTML = `
-  <div class="card h-100" id="test">
+    listItem.innerHTML = `<style>.image-container {
+      height: 200px; /* ajustez la hauteur souhaitée ici */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .image-fit {
+      max-width: 100%;
+      max-height: 100%;
+    }</style>
+  <div class="card h-100" id="test" >
     <!-- Product image-->
-    <img class="card-img-top" src="${user.picture}" alt="..." />
+    <div class="image-container">
+    <img class="card-img-top image-fit" src="${user.picture}" alt="..." />
+  </div>
     <!-- Product details-->
     <div class="card-body p-4">
       <div class="text-center">

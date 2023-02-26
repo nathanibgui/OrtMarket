@@ -4,7 +4,14 @@ include('../vue/navbar.php');
 include('../vue/footer.php');
 $a = new Articles;
 $cl = $a->liste_com($_GET['id']);
-
+if(!$u->root())
+{
+    ?>
+   <SCRIPT LANGUAGE="JavaScript">
+document.location.href="../?er=01"
+</SCRIPT>
+<?php
+}
 // include("../vue/"); ?>
 <br><br><br>
 <H2 style="text-align:center">Liste des commandes</H2>

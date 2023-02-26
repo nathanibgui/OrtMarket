@@ -15,6 +15,7 @@ else
 {
 $a = new Articles;
 $id_c = $a->add_com($_SESSION['id']);
+
 $p = new Panier;
 $po = $p->obtenirPanier();
 $i = 0;
@@ -27,6 +28,7 @@ while($i<count($po['qte']))
     unset($_SESSION['panier']);
     $i=$i+1;
 }
+$art = $a->get_product_com($id_c,$_SESSION['id']);
 include('../vue/vue_commande_ok.php');
 }
 ?>

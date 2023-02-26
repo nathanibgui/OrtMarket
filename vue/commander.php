@@ -1,7 +1,7 @@
 <header class="bg-dark py-5">
             <div class="container px-2  px-lg-2 my-2">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Commande <?php echo $panier["ref"][0]; ?></h1>
+                    <h1 class="display-4 fw-bolder">Commande </h1>
                 </div>
             </div>
         </header>
@@ -17,7 +17,7 @@ while($i<count($panier['ref']))
 
    
     $art = $a->liste_one($panier['ref'][$i]);
-   $total = $total + $art[0]['prix']*$panier['qte'][$i];
+  //  $total = $total + $art[0]['prix']*$panier['qte'][$i];
   
 ?><div class="card">
     <div style="text-align:right;"><a style="color:black"; href="../php/del_panier.php?id=<?php echo $art[0]['id']; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16">
@@ -41,9 +41,9 @@ width : 100%;
 <h6 style="text-align:left"><?php echo $art[0]['Title'] ?></h6>
     </div>
     <div class="col-3">
-        <div style="text-align:right"><strike>699.00€</strike>&ensp;<button type="button" class="btn btn-outline-warning">-33%</button></div>
+        <!-- <div style="text-align:right"><strike>699.00€</strike>&ensp;<button type="button" class="btn btn-outline-warning">-33%</button></div>
         <h4 style=""><?php echo $art[0]['prix'] ?>€</h4>
-      <div style="font-size:10px;">dont 5,00€ d’éco-part. DEEE</div> 
+      <div style="font-size:10px;">dont 5,00€ d’éco-part. DEEE</div>  -->
     </div>
     <div><input style="width:5%;" type="number" name="qtn" value="<?php echo $panier['qte'][$i]; ?>" id=""></div>
    </div>

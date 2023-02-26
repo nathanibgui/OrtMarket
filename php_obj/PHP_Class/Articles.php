@@ -78,17 +78,24 @@ class Articles
     //     $jeuResultat->closeCursor();  
     //     return $info;
     // }
-  function add_com($idc)
-  {
+//   function add_com($idc)
+//   {
+//     $cnx = cnx_bdd();
+//     $requete = "INSERT INTO commande (date_commande,id_client) VALUE (NOW(),'".$idc."' )";
+//     $ok=$cnx->query($requete);
+//     $requete = "SELECT LAST_VALUE(id_commande) OVER (ORDER BY date_commande ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_id
+//     FROM commande";
+//     $jeuResultat=$cnx->query($requete);  
+//     $i = 0;
+//     $ligne = $jeuResultat->fetch();
+//     return $ligne[0];
+//   }
+function add_com($idc) {
     $cnx = cnx_bdd();
     $requete = "INSERT INTO commande (date_commande,id_client) VALUE (NOW(),'".$idc."' )";
-    $ok=$cnx->query($requete);
-    $requete = "SELECT LAST_VALUE(id_commande) OVER (ORDER BY date_commande ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_id
-    FROM commande";
-    $jeuResultat=$cnx->query($requete);  
-    $i = 0;
-    $ligne = $jeuResultat->fetch();
-    return $ligne[0];
+    $ok = $cnx->query($requete);
+    $last_id = $cnx->lastInsertId();
+    return $last_id;
   }
   function add_ligne($qtn,$idc,$idp)
   {
@@ -108,11 +115,13 @@ class Articles
     $requete="SELECT l.quantite,l.id_produit from ligne_commande l inner join commande c on c.id_commande = l.id_commande where c.id_commande  = $id_c and c.id_client = $id_u;";
     $jeuResultat=$cnx->query($requete);  
     $i = 0;
+ 
     $ligne = $jeuResultat->fetch();
     while($ligne)
     {
-        $info[$i]['quantite']=$ligne['id'];
-        $info[$i]['id_produit']=$ligne['Title'];
+        $info[$i]['qtn']=$ligne['quantite'];
+        $info[$i]['idp']=$ligne['id_produit'];
+        $ligne=$jeuResultat->fetch();
         $i = $i+1;
     }
     return $info;

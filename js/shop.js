@@ -41,26 +41,67 @@ function createUserList(usersList) {
     listItem.setAttribute("class", "col mb-5");
 
     listItem.innerHTML = `
-    <div class="card h-100" id="test">
+  <div class="card h-100" id="test">
     <!-- Product image-->
     <img class="card-img-top" src="${user.picture}" alt="..." />
     <!-- Product details-->
     <div class="card-body p-4">
-        <div class="text-center">
-            <!-- Product name-->
-            <p class="fw-bolder">${user.Title}</p>
-            <!-- Product price-->
-        
-        </div>
+      <div class="text-center">
+        <!-- Product name-->
+        <p class="fw-bolder">${user.Title}</p>
+      </div>
     </div>
     <!-- Product actions-->
     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <p id="prx" style="text-align:center">${user.prix}€</p>
-        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="../php/detail_prd.php?id=${user.id}">View options</a> <a href="../php/add_panier.php?idart=${user.id}"><button type="button" class="btn btn-success">+</button></a> </div>
+      ${
+        user.qtn <= 0
+          ? `<p id="prx" style="text-align:center"><div style="position:relative;bottom:35%;text-align:center;" class="alert alert-danger" role="alert">
+         stock epuisé !
+        </div></p>`
+          : `<p id="prx" style="text-align:center">Quantité(s) : ${user.qtn}</p><div class="text-center">
+          <a class="btn btn-outline-dark mt-auto" href="../php/detail_prd.php?id=${user.id}">View options</a>
+          <a href="../php/add_panier.php?idart=${user.id}">
+            <button type="button" class="btn btn-success">+</button>
+          </a>
+        </div>`
+      }
+     
+      
       
     </div>
-</div>
-    `
+  </div>
+`;
+
+  
+//     listItem.innerHTML = `
+//     <div class="card h-100" id="test">
+//     <!-- Product image-->
+//     <img class="card-img-top" src="${user.picture}" alt="..." />
+//     <!-- Product details-->
+//     <div class="card-body p-4">
+//         <div class="text-center">
+//             <!-- Product name-->
+//             <p class="fw-bolder">${user.Title}</p>
+//             <!-- Product price-->
+        
+//         </div>
+//     </div>
+//     <!-- Product actions-->
+//     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+//         <p id="prx" style="text-align:center">`
+//         if(user.qtn <=0){
+//           `<span class="badge badge-pill badge-danger">Danger</span>`
+//         }
+//         else
+//         {
+//           `
+        
+//         ${user.qtn} `}`</p>
+//         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="../php/detail_prd.php?id=${user.id}">View options</a> <a href="../php/add_panier.php?idart=${user.id}"><button type="button" class="btn btn-success">+</button></a> </div>
+      
+//     </div>
+// </div>
+//     `
     searchResult.appendChild(listItem);
   })
 

@@ -34,6 +34,7 @@ class Articles
     while ( $row = $res->fetch(PDO::FETCH_ASSOC)) {
        $data[] = $row;
     }
+    
     //Afficher le tableau au format JSON
     echo json_encode($data);
 }

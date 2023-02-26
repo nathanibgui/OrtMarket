@@ -1,45 +1,61 @@
-<?php include('../vue/navbar.php');
-include('class/users.class.php');
-if(isset($_GET['er']))
+<?php
+include('../php_obj/autoload.php'); 
+include('../vue/navbar.php');
+if(isset($_GET['er'])) 
 {
-    if($_GET['er']==01)
+    if($_GET['er']==02)
+    {
+
+    
+    ?>
+    <div style="text-align:center" class="alert alert-warning" role="alert">
+  Avant de finaliser votre commande vous devez vous connecter à votre compte !
+</div>
+    <?php
+    }
+    if($_GET['er']==101)
     {
         ?>
-        <div style="text-align:center;" class="alert alert-danger" role="alert">
-             Connexion Faild !
-        </div>
-        <?php
+    <div style="text-align:center" class="alert alert-warning" role="alert">
+Le compte a été creer !!</div>
+    <?php
     }
-  
 }
 if(count($_POST)==0)
 {
     include('../vue/login.php');
+    include('../vue/footer.php');
 }
-else{
-
-    $Email = $_POST['Email'];
-    $Password = $_POST['Password'];
-    if($Email=='' OR $Password == '')
-    {
-        include('../vue/login.php');
-    }
-    else
-    {
-        $user = new User();
-        $result = $user->verif_mdp($Email,$Password);
-        if($result)
+else
+{
+   if($_POST['mail']!="")
+   {
+        $u = new Users;
+        $cnx = $u->connexion($_POST['mail'],$_POST['mdp']);
+        if($cnx)
         {
-            
-            header('Location:../index.php?er=10');
+            ?>
+            <SCRIPT LANGUAGE="JavaScript">
+            document.location.href="view_panier.php"
+            </SCRIPT>
+            <?php
         }
         else
         {
-            header('Location:login.php?er=01');
+            ?>
+            <div class="alert alert-danger" role="alert">
+                Email ou mot de passe incorrecte !
+            </div>
+            <?php
+            include('../vue/login.php');
         }
+   }
+   else
+   {
+    include('../vue/login.php');
+    include('../vue/footer.php');
+   }
+}
 
-      
-   
-}
-}
+
 ?>

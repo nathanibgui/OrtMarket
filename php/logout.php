@@ -1,5 +1,6 @@
 <?php
-session_start();
-session_unset();
+include('../php_obj/autoload.php');
+$u = new Users;
+$u->del_session();
 header('Location:../');
 ?>

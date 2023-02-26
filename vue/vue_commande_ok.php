@@ -25,7 +25,10 @@
     <?php $i=0;  while($i<count($art)){ $img = $a->liste_one($art[$i]['idp']); ?>
     <tr>
       <th scope="row"><?php echo $art[$i]['idp'] ?></th>
-      <td><img src="<?php echo $img[0]['picture'] ?>" alt=""></td>
+      <td style="text-align: center;">
+  <img src="<?php echo $img[0]['picture'] ?>" alt="" style="max-width: 100px; max-height: 100px;">
+</td>
+
       <td><?php echo $art[$i]['qtn'] ?></td>
      
     </tr>

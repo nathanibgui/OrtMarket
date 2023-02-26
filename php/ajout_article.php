@@ -30,7 +30,7 @@ else
         
         ?>
         <SCRIPT LANGUAGE="JavaScript">
-        document.location.href="ajout_article.php?pre=ok&title=<?php echo $_POST['title'];?>&pic=<?php echo $_POST['pic'];?>&pr=<?php echo $_POST['prix']; ?>"
+        document.location.href="ajout_article.php?pre=ok&title=<?php echo $_POST['title'];?>&pic=<?php echo $_POST['pic'];?>&pr=<?php echo $_POST['qtn']; ?>"
         </SCRIPT>
         <?php
     }
@@ -38,7 +38,7 @@ else
     {
 
     $date = date('d-m-y');
-    $a->add( $_POST['title'],$_POST['des'],$date,$_POST['cat'],$_POST['pic'],$_POST['prix'],$_POST['qtn']);
+    $a->add( $_POST['title'],$_POST['des'],$date,$_POST['pic'],$_POST['qtn']);
     
     }
     

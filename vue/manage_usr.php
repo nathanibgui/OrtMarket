@@ -11,6 +11,7 @@
       <th scope="col">Email</th>
      
       <th scope="col">Catégorie</th>
+      <th>Count Order this Week</th>
       <th scope="col">Edit</th>
     
     

@@ -45,6 +45,44 @@ class Users
         $ok=$cnx->query($requete);
     }
 
+    function count_order_week($userId)
+    {
+        
+            // Récupérer la date et l'heure actuelles
+            $now = new DateTime();
+            // Récupérer le début de la semaine (lundi) en utilisant le format "N" de DateTime (1 = lundi, 7 = dimanche)
+            $startOfWeek = $now->modify('this week')->modify('+' . (1 - $now->format('N')) . ' days');
+            // Récupérer la fin de la semaine (dimanche) en ajoutant 6 jours à la date de début de la semaine
+            $endOfWeek = $startOfWeek->modify('+6 days');
+            $cnx = cnx_bdd();
+            $requete = "SELECT COUNT(*) FROM commande WHERE id_client = $userId AND date_commande BETWEEN '{$startOfWeek->format('Y-m-d')}' AND '{$endOfWeek->format('Y-m-d')}'";
+            // Requête SQL pour compter le nombre de commandes passées par l'utilisateur au cours de la semaine actuelle
+           
+            
+            // Exécuter la requête SQL
+         
+            $ok=$cnx->query($requete);
+            // Récupérer le nombre de commandes à partir du résultat de la requête
+            $count = $ok->fetchColumn();
+            
+            // Retourner le nombre de commandes
+            return $count;
+        
+    }
+// function test()
+// {
+//     $cnx = cnx_bdd();
+
+//     $res = $cnx->query("SELECT * FROM Users");
+//     //Initialiser un tableau
+//     $data = array();
+//     //Récupérer les lignes
+//     while ( $row = $res->fetch(PDO::FETCH_ASSOC)) {
+//        $data[] = $row;
+//     }
+//     //Afficher le tableau au format JSON
+//     echo json_encode($data);
+// }
 function test()
 {
     $cnx = cnx_bdd();
@@ -54,6 +92,11 @@ function test()
     $data = array();
     //Récupérer les lignes
     while ( $row = $res->fetch(PDO::FETCH_ASSOC)) {
+       // Compter le nombre de commandes passées par l'utilisateur dans la semaine actuelle
+       $count = $this->count_order_week($row['id']);
+       // Ajouter le nombre de commandes à la ligne de l'utilisateur
+       $row['count_order'] = $count;
+       // Ajouter la ligne au tableau de données
        $data[] = $row;
     }
     //Afficher le tableau au format JSON

@@ -3,13 +3,14 @@
 class Articles
 {
 
-    function add($title,$des,$date_aj,$idc,$picture,$prix,$qtn)
+    function add($title,$des,$date_aj,$picture,$qtn)
     {
         $cnx = cnx_bdd();
-        $requete = "INSERT INTO Articles (Title,`Description`,Date_ajout,picture,prix,qtn) VALUES ('".$title."','".$des."','".$date_aj."','".$picture."','".$prix."','".$qtn."');";
+        $requete = "INSERT INTO Articles (Title,`Description`,Date_ajout,picture,qtn) VALUES ('".$title."','".$des."','".$date_aj."','".$picture."','".$qtn."');";
         $ok=$cnx->query($requete);
         
     }
+   
     function del($id)
     {
         $cnx = cnx_bdd();
@@ -131,7 +132,7 @@ function add_com($idc) {
     function liste_com($id_u)
     {
         $cnx = cnx_bdd();
-        $requete="SELECT * from commande where id_client = $id_u;";
+        $requete="SELECT * from commande where id_client = $id_u order by id_commande DESC;";
         $jeuResultat=$cnx->query($requete);  
         $i = 0;
         $ligne = $jeuResultat->fetch();

@@ -95,6 +95,12 @@ class Articles
     $requete = "INSERT INTO ligne_commande (quantite,id_commande,id_produit) VALUE ($qtn,$idc,$idp)";
     $ok=$cnx->query($requete);
   }
+  function qtn_1($id,$qtn)//Enleve 1 quantité a un articles lorsque que qql commande 
+  {
+    $cnx = cnx_bdd();
+    $requete = "UPDATE Articles SET qtn = qtn - $qtn WHERE id = $id";
+    $ok=$cnx->query($requete);
+  }
   function get_product_com($id_c,$id_u)
   {
     $cnx = cnx_bdd();

@@ -22,6 +22,7 @@ while($i<count($po['qte']))
 {
     $qte =  $po['qte'][$i];
     $ref = $po['ref'][$i];
+    $a->qtn_1($ref,$qte);
     $a->add_ligne($qte,$id_c,$ref);
     unset($_SESSION['panier']);
     $i=$i+1;

@@ -86,7 +86,6 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `Users` (`id`, `cat`, `Nom`, `Prenom`, `Mail`, `Login`, `Password`, `Date_Creation`) VALUES
-(1,	'root',	'Sroussi',	'Nathan',	'Nathansroussi@gmail.com',	'Nat.5_',	'root',	'2022-11-23 19:16:23'),
 (2,	'root',	'demo',	'demo',	'demo@demo.fr',	'demo',	'demo',	NULL);
 
 -- 2023-02-26 09:11:11

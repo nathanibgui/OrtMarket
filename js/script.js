@@ -46,6 +46,10 @@ function createUserList(usersList) {
     <td>${user.Nom}</td>
     <td>${user.Prenom}</td>
     <td>${user.Mail}</td>
+    <td>${
+      user.is_active == true
+        ?`<button type="button" class="btn btn-success">O</button>`
+      : `<button type="button" class="btn btn-danger">O</button>`}</td>
     <td>${user.cat}</td>
     <td>${user.count_order}</td>
     <td><a href="../php/update_usr.php?id=${user.id}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">

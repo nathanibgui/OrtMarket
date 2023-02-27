@@ -6,6 +6,7 @@ if(isset($_SESSION['id']))
    if($_SESSION['id']!='')
    {
       $u->update_activite($_SESSION['id']);
+      
    } 
  }
 $p = new Panier;

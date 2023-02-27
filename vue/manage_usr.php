@@ -9,7 +9,7 @@
       <th scope="col">Nom</th>
       <th scope="col">Prenom</th>
       <th scope="col">Email</th>
-     
+      <th scope="col">Statut</th>
       <th scope="col">Catégorie</th>
       <th>Count Order this Week</th>
       <th scope="col">Edit</th>

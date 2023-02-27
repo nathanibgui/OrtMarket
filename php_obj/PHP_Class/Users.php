@@ -33,6 +33,35 @@ class Users
         $ok=$cnx->query($requete);
       
     }
+    function get_activites($id)
+    {
+        $cnx = cnx_bdd();
+        $requete = "select Date_Activité from Users where id = $id;";
+        $jeuResultat=$cnx->query($requete);  
+        $i = 0;
+        $ligne = $jeuResultat->fetch();
+        return $ligne[0];
+      
+    }
+    function status($id)
+    {
+        $date = $this->get_activites($id);
+
+        $dateToCompare = new DateTime($date); // Date à comparer
+        $now = new DateTime(); // Heure actuelle
+        $interval = $now->diff($dateToCompare); // Calcul de la différence entre les deux dates
+       
+        if($interval->format('%i')>=2)
+        {
+            return False;
+        }
+        else
+        {
+
+            return True;
+        }
+        
+    }
     function UPDATE($id,$nom,$prenom,$mail,$login,$mdp) //Ajouter un Utilisateurs
     {
 
@@ -76,6 +105,29 @@ class Users
             return $count;
         
     }
+    function test()
+    {
+        $cnx = cnx_bdd();
+    
+        $res = $cnx->query("SELECT * FROM Users");
+    
+        $data = array();
+    
+        while ( $row = $res->fetch(PDO::FETCH_ASSOC)) {
+    
+           $count = $this->count_order_week($row['id']);
+    
+           $row['count_order'] = $count;
+    
+           $is_active = $this->status($row['id']);
+    
+           $row['is_active'] = $is_active;
+    
+           $data[] = $row;
+        }
+    
+        echo json_encode($data);
+    }
 // function test()
 // {
 //     $cnx = cnx_bdd();
@@ -85,30 +137,16 @@ class Users
 //     $data = array();
 //     //Récupérer les lignes
 //     while ( $row = $res->fetch(PDO::FETCH_ASSOC)) {
+//        // Compter le nombre de commandes passées par l'utilisateur dans la semaine actuelle
+//        $count = $this->count_order_week($row['id']);
+//        // Ajouter le nombre de commandes à la ligne de l'utilisateur
+//        $row['count_order'] = $count;
+//        // Ajouter la ligne au tableau de données
 //        $data[] = $row;
 //     }
 //     //Afficher le tableau au format JSON
 //     echo json_encode($data);
 // }
-function test()
-{
-    $cnx = cnx_bdd();
-
-    $res = $cnx->query("SELECT * FROM Users");
-    //Initialiser un tableau
-    $data = array();
-    //Récupérer les lignes
-    while ( $row = $res->fetch(PDO::FETCH_ASSOC)) {
-       // Compter le nombre de commandes passées par l'utilisateur dans la semaine actuelle
-       $count = $this->count_order_week($row['id']);
-       // Ajouter le nombre de commandes à la ligne de l'utilisateur
-       $row['count_order'] = $count;
-       // Ajouter la ligne au tableau de données
-       $data[] = $row;
-    }
-    //Afficher le tableau au format JSON
-    echo json_encode($data);
-}
     function liste() //Lister les utilisateurs
     {
         $cnx = cnx_bdd();

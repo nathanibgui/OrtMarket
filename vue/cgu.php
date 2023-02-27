@@ -20,3 +20,14 @@
 <li>Nous nous réservons le droit de modifier les CGU à tout moment, sans préavis.</li>
 </ul>
 </div>
+<?php
+$date = "2023-02-27 13:19:03"; // Date à comparer
+
+$dateToCompare = new DateTime($date); // Date à comparer
+$now = new DateTime(); // Heure actuelle
+
+$interval = $now->diff($dateToCompare); // Calcul de la différence entre les deux dates
+
+// Affichage du temps écoulé
+echo "Il s'est écoulé " . $interval->format('%y années, %m mois, %d jours, %h heures, %i minutes, %s secondes') . " depuis $date.";
+?>

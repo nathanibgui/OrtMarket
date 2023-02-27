@@ -1,4 +1,4 @@
--- Adminer 4.8.1 MySQL 5.5.5-10.6.11-MariaDB-0ubuntu0.22.04.1 dump
+-- Adminer 4.8.1 MySQL 5.5.5-10.6.12-MariaDB-0ubuntu0.22.04.1 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -20,9 +20,6 @@ CREATE TABLE `Adresse` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `Adresse` (`id`, `id_users`, `Title`, `Pays`, `Ville`, `Code_postal`, `Rue`, `N°`) VALUES
-(1,	1,	'CASIP',	'France',	'Paris',	75020,	'Rue Pali Kao',	8),
-(2,	1,	'CASIP',	'France',	'Paris',	75020,	'Rue Pali Kao',	8);
 
 DROP TABLE IF EXISTS `Articles`;
 CREATE TABLE `Articles` (
@@ -39,8 +36,7 @@ CREATE TABLE `Articles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `Articles` (`id`, `Title`, `Description`, `Date_ajout`, `id_Catégories`, `picture`, `qtn`) VALUES
-(7,	'snikker',	'snikkers',	'2026-02-23 00:00:00',	NULL,	'https://th.bing.com/th/id/OIP._dkpUe6xGUCGSpvpHrc-7QHaHa?w=203',	'63'),
-(8,	'Kinder Bueno',	'Kinder',	'2026-02-23 00:00:00',	NULL,	'https://prcttrading.com/wp-content/uploads/2021/05/kinder-bueno-1.jpg',	'4');
+(1,	'Coca ',	'Coca',	'2027-02-23 00:00:00',	NULL,	'https://www.delcourt.fr/4520-thickbox_default/Coca-cola-33-cl-Lot-de-24.jpg',	'17');
 
 DROP TABLE IF EXISTS `Catégories`;
 CREATE TABLE `Catégories` (
@@ -50,11 +46,6 @@ CREATE TABLE `Catégories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `Catégories` (`id`, `Title`, `Description`) VALUES
-(1,	'Ordinateurs',	'blabla'),
-(2,	'Téléphones',	NULL),
-(3,	'Accessoires Ordinateurs',	'\"Souries clavier ...\"'),
-(4,	'Licences',	'Windows 10,Office etc...');
 
 DROP TABLE IF EXISTS `commande`;
 CREATE TABLE `commande` (
@@ -67,11 +58,9 @@ CREATE TABLE `commande` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `commande` (`id_commande`, `date_commande`, `id_client`) VALUES
-(51,	'2023-02-26',	2),
-(52,	'2023-02-26',	2),
-(53,	'2023-02-26',	2),
-(54,	'2023-02-26',	2),
-(55,	'2023-02-26',	1);
+(1,	'2023-02-27',	2),
+(2,	'2023-02-27',	2),
+(3,	'2023-02-27',	2);
 
 DROP TABLE IF EXISTS `ligne_commande`;
 CREATE TABLE `ligne_commande` (
@@ -86,14 +75,9 @@ CREATE TABLE `ligne_commande` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `ligne_commande` (`id_ligne`, `quantite`, `id_commande`, `id_produit`) VALUES
-(33,	1,	51,	7),
-(34,	2,	52,	7),
-(35,	2,	53,	8),
-(36,	2,	53,	7),
-(37,	2,	54,	8),
-(38,	2,	54,	7),
-(39,	2,	55,	8),
-(40,	2,	55,	7);
+(1,	2,	1,	1),
+(2,	2,	2,	1),
+(3,	6,	3,	1);
 
 DROP TABLE IF EXISTS `Users`;
 CREATE TABLE `Users` (
@@ -105,11 +89,12 @@ CREATE TABLE `Users` (
   `Login` varchar(100) DEFAULT NULL,
   `Password` varchar(200) DEFAULT NULL,
   `Date_Creation` datetime DEFAULT NULL,
+  `Date_Activité` datetime DEFAULT NULL,
+  `Etat` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `Users` (`id`, `cat`, `Nom`, `Prenom`, `Mail`, `Login`, `Password`, `Date_Creation`) VALUES
-(1,	'root',	'Sroussi',	'Nathan',	'Nathansroussi@gmail.com',	'Nat.5_',	'root',	'2022-11-23 19:16:23'),
-(2,	'root',	'demo',	'demo',	'demo@demo.fr',	'demo',	'demo',	NULL);
+INSERT INTO `Users` (`id`, `cat`, `Nom`, `Prenom`, `Mail`, `Login`, `Password`, `Date_Creation`, `Date_Activité`, `Etat`) VALUES
+(2,	'root',	'demo',	'demo',	'demo@demo.fr',	'demo',	'demo',	NULL,	'2023-02-27 13:27:22',	NULL);
 
--- 2023-02-26 13:09:30
+-- 2023-02-27 12:27:58

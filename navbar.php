@@ -1,5 +1,12 @@
 
-<?php session_start(); ?>
+<?php session_start(); $u = new Users;
+ if(isset($_SESSION['id']))
+  { 
+    if($_SESSION['id']!='')
+    {
+       $u->update_activite($_SESSION['id']);
+    } 
+  } ?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>

@@ -26,6 +26,13 @@ class Users
         }
      
     }
+    function update_activite($id)
+    {
+        $cnx = cnx_bdd();
+        $requete = "UPDATE Users set  Date_Activité = NOW() where id = $id;";
+        $ok=$cnx->query($requete);
+      
+    }
     function UPDATE($id,$nom,$prenom,$mail,$login,$mdp) //Ajouter un Utilisateurs
     {
 

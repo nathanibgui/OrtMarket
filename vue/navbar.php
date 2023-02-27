@@ -4,7 +4,7 @@
 $p = new Panier;
 $count = $p->comptePanier();
 $c = new Categories;
-$cl = $c->liste();
+// $cl = $c->liste();
 $u = new Users;
  ?>
 <html lang="en">
@@ -42,9 +42,7 @@ $u = new Users;
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               
                                 <li><a class="dropdown-item" href="#!">All Products</a></li>
-                                <?php $i = 0; while($i<count($cl)) { ?>
-                                <li><a class="dropdown-item" href="../php/shop_cat.php?id=<?php echo $cl[$i]['id']; ?>"><?php echo $cl[$i]['Title']; ?></a></li>
-                                <?php $i=$i+1; } ?>
+                               
 
                                 
                             </ul>

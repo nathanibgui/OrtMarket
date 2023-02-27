@@ -9,26 +9,26 @@ class Categories
         $ok=$cnx->query($requete);
 
     }
-    function liste()
-    {
+    // function liste()
+    // {
         
-        $cnx = cnx_bdd();
-        $requete = "select * from Catégories ;";
-        $jeuResultat=$cnx->query($requete);  
-        $i = 0;
-        $ligne = $jeuResultat->fetch();
-        while($ligne)
-        {
+    //     $cnx = cnx_bdd();
+    //     $requete = "select * from Catégories ;";
+    //     $jeuResultat=$cnx->query($requete);  
+    //     $i = 0;
+    //     $ligne = $jeuResultat->fetch();
+    //     while($ligne)
+    //     {
            
-            $info[$i]['id']=$ligne['id'];
-            $info[$i]['Title']=$ligne['Title'];
-            $info[$i]['Description']=$ligne['Description'];
-            $ligne=$jeuResultat->fetch();
-            $i = $i + 1;
-        }
-        $jeuResultat->closeCursor();  
-        return $info;
-    }
+    //         $info[$i]['id']=$ligne['id'];
+    //         $info[$i]['Title']=$ligne['Title'];
+    //         $info[$i]['Description']=$ligne['Description'];
+    //         $ligne=$jeuResultat->fetch();
+    //         $i = $i + 1;
+    //     }
+    //     $jeuResultat->closeCursor();  
+    //     return $info;
+    // }
     // function liste_id($id)
     // {
     //     $cnx = cnx_bdd();

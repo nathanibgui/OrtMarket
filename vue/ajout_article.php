@@ -42,10 +42,7 @@
             <!-- <label for="exampleInputEmail1">Categorie </label>
 
         <select class="form-select" aria-label="Default select example" name="cat">
-  <?php $i=0; while($i<count($cl)) { ?>
-  <option value="<?php echo $cl[$i]['id']; ?>"><?php echo $cl[$i]['Title']; ?></option>
-  <?php $i = $i+1; } ?>
-
+  
 </select> -->
 <br>
 

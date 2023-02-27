@@ -14,7 +14,7 @@ document.location.href="../?er=01"
 <?php
 }
 $c = new Categories;
-$cl = $c->liste();
+
 $a = new Articles;
 
 if(count($_POST)==0)
